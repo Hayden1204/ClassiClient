@@ -1022,7 +1022,7 @@ void MainScreen_SetActive(void) {
 	s->Activated     = MainScreen_Activated;
 	s->LoadState     = MainScreen_Load;
 	s->Tick          = MainScreen_Tick;
-	s->title         = "ClassiCube";
+	s->title         = "ClassiClient";
 
 #ifdef CC_BUILD_NETWORKING
 	s->onEnterWidget = (struct LWidget*)&s->btnLogin;
@@ -1326,7 +1326,7 @@ static void ServersScreen_ReloadServers(struct ServersScreen* s) {
 
 static void ServersScreen_AddWidgets(struct ServersScreen* s) {
 	LInput_Add(s,  &s->iptSearch, 370, "Search servers..",               srv_iptSearch);
-	LInput_Add(s,  &s->iptHash,   475, "classicube.net/server/play/...", srv_iptHash);
+	LInput_Add(s,  &s->iptHash,   475, "classiclient.dedyn.io/server/play/...", srv_iptHash);
 
 	LButton_Add(s, &s->btnBack,    110, 30, "Back",    
 				SwitchToMain,          srv_btnBack);
@@ -1477,7 +1477,7 @@ static void SettingsScreen_DPIScaling(struct LCheckbox* w) {
 #if defined CC_BUILD_WIN
 	DisplayInfo.DPIScaling = w->value;
 	Options_SetBool(OPT_DPI_SCALING, w->value);
-	Window_ShowDialog("Restart required", "You must restart ClassiCube before display scaling takes effect");
+	Window_ShowDialog("Restart required", "You must restart ClassiClient before display scaling takes effect");
 #else
 	Window_ShowDialog("Restart required", "Display scaling is currently only supported on Windows");
 #endif
