@@ -1,15 +1,15 @@
-ClassiCube is a custom Minecraft Classic compatible client written in C from scratch.<br>
+ClassiClient is a custom Minecraft Classic compatible client written in C.<br>
 
-You can **download ClassiCube** [here](https://www.classicube.net/download/) and the very latest builds [here](https://www.classicube.net/nightlies/).
+#You can **download ClassiCube** [here](https://www.classicube.net/download/) and the very latest builds [here](https://www.classicube.net/nightlies/).
 
 > [!IMPORTANT]
-**ClassiCube is not affiliated with (or supported by) Mojang AB, Minecraft, or Microsoft in any way.** <br><br>
-**ClassiCube is not trying to replicate modern Minecraft.**<br>
-**It will never support survival, Minecraft accounts, or modern Minecraft servers.**
+**ClassiClient is not affiliated with (or supported by) Mojang AB, Minecraft, Microsoft or ClassiCube in any way.** <br><br>
+**ClassiClient is not trying to replicate modern Minecraft.**<br>
+**It will never support Minecraft accounts or modern Minecraft servers.**
 
-# What ClassiCube is
+# What ClassiClient is
 
-ClassiCube aims to replicate the 2009 Minecraft Classic client while offering **optional** enhancements to improve gameplay. ClassiCube can run on [many systems](#supported-systems), including desktop, web, mobile, and even some consoles.
+ClassiClient aims to replicate the 2009 Minecraft Classic client while offering **optional** enhancements to improve gameplay. ClassiClient can run on [many systems](#supported-systems), including desktop, web, mobile, and even some consoles.
 <details>
 <summary><b>Features (click to expand)</b></summary>
 
@@ -30,7 +30,7 @@ ClassiCube aims to replicate the 2009 Minecraft Classic client while offering **
 
 # We need your help
 
-ClassiCube strives to replicate the original Minecraft Classic experience by **strictly adhering to [clean room](https://en.wikipedia.org/wiki/Clean_room_design) reverse engineering approach**.
+ClassiClient strives to replicate the original Minecraft Classic experience by **strictly adhering to [clean room](https://en.wikipedia.org/wiki/Clean_room_design) reverse engineering approach**.
 
 If you're interested in documenting or verifying the behaviour of the original Minecraft Classic, please get in contact on the [ClassiCube Discord](https://classicube.net/discord)
 
@@ -42,10 +42,10 @@ Just click 'OK' to the dialog menu that appears when you start the launcher.
 > **Note:** When running from within VirtualBox, disable Mouse Integration, otherwise the in-game camera won't work properly.
 
 **Singleplayer mode**
-Run ClassiCube.exe, then click Singleplayer at the main menu.
+Run ClassiClient.exe, then click Singleplayer at the main menu.
 
 **Multiplayer mode**
-Run ClassiCube.exe. You can connect to LAN/locally hosted servers, and classicube.net servers if you have a [ClassiCube account](https://www.classicube.net/).
+Run ClassiClient.exe. You can connect to LAN/locally hosted servers, and classicube.net servers if you have a [ClassiCube account](https://www.classicube.net/).
 
 #### *Stuck on OpenGL 1.1?*
 The most common reason for being stuck on OpenGL 1.1 is non-working GPU drivers - so if possible, you should try either installing or updating the drivers for your GPU.
@@ -58,7 +58,7 @@ Don't forget to add `-DCC_BUILD_GL11` to the compilation command line so that th
 
 # Supported systems
 
-ClassiCube runs on:
+ClassiClient runs on:
 * Windows - 95 and later
 * macOS - 10.5 or later (can be compiled for 10.3/10.4 though)
 * Linux - needs `libopenal`
@@ -113,14 +113,14 @@ If you get a `The Windows SDK version 5.1 was not found` compilation error, [see
 
 ##### Using Visual Studio (command line)
 1. Use 'Developer Tools for Visual Studio' from Start Menu
-2. Navigate to the directory with ClassiCube's source code
+2. Navigate to the directory with ClassiClient's source code
 3. Run `cl.exe src\*.c third_party\bearssl\*.c /link user32.lib gdi32.lib winmm.lib dbghelp.lib shell32.lib comdlg32.lib /out:ClassiCube.exe`
 
 ##### Using MinGW-w64
 Assuming that you used the installer from https://sourceforge.net/projects/mingw-w64/ :
 1. Install MinGW-W64
 2. Use either *Run Terminal* from Start Menu or run *mingw-w64.bat* in the installation folder
-3. Navigate to the directory with ClassiCube's source code
+3. Navigate to the directory with ClassiClient's source code
 4. Run either:
     * `make windows` - produces a simple non-optimised executable, easier to debug
     * `make windows RELEASE=1` - produces an optimised executable, harder to debug
@@ -129,7 +129,7 @@ Assuming that you used the installer from https://sourceforge.net/projects/mingw
 Assuming that you used the installer from https://osdn.net/projects/mingw/ :
 1. Install MinGW. You need mingw32-base-bin and msys-base-bin packages.
 2. Run *msys.bat* in the *C:\MinGW\msys\1.0* folder.
-3. Navigate to the directory with ClassiCube's source code
+3. Navigate to the directory with ClassiClient's source code
 4. Run either:
     * `make windows` - produces a simple non-optimised executable, easier to debug
     * `make windows RELEASE=1` - produces an optimised executable, harder to debug
@@ -447,7 +447,7 @@ You'll have to write the necessary code. You should read `portability.md` in doc
 
 Functions and variables in .h files are mostly documented.
 
-Further information (e.g. style) for ClassiCube's source code can be found in the doc and misc folders.
+Further information (e.g. style) for ClassiClient's source code can be found in the doc and misc folders.
 
 #### Known compilation errors
 
@@ -513,7 +513,7 @@ Further information (e.g. style) for ClassiCube's source code can be found in th
 </details>
 
 ## Sound Credits
-ClassiCube uses sounds from [Freesound.org](https://freesound.org)<br>
+ClassiClient uses sounds from [Freesound.org](https://freesound.org)<br>
 Full credits are listed in [doc/sound-credits.md](doc/sound-credits.md)
 
 
