@@ -36,7 +36,7 @@ If you're interested in documenting or verifying the behaviour of the original M
 
 
 # How to play
-Initially, you will need to run ClassiCube.exe to download the required assets from minecraft.net and classicube.net.<br>
+Initially, you will need to run the ClassiClient executable to download the required assets from minecraft.net and classicube.net.<br>
 Just click 'OK' to the dialog menu that appears when you start the launcher.
 
 > **Note:** When running from within VirtualBox, disable Mouse Integration, otherwise the in-game camera won't work properly.
