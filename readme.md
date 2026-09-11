@@ -1,6 +1,6 @@
 ClassiClient is a custom Minecraft Classic compatible client written in C.<br>
 
-You can **download ClassiClient** [here](https://www.classicube.net/download/) and the very latest builds [here](https://www.classicube.net/nightlies/).
+You can **download ClassiClient** [here](https://github.com/Hayden1204/ClassiCube/releases).
 
 > [!IMPORTANT]
 **ClassiClient is not affiliated with (or supported by) Mojang AB, Minecraft, Microsoft or ClassiCube in any way.** <br><br>
