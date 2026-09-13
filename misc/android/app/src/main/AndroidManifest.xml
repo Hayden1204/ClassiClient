@@ -17,14 +17,14 @@
       android:icon="@mipmap/ccicon"
       android:label="ClassiClient">
     <provider
-        android:name="com.classicube.CCFileProvider"
+        android:name="com.classiclient.CCFileProvider"
         android:authorities="com.classiclient.android.client.provider"
         android:exported="false"
         android:grantUriPermissions="true"/>
     <!--NOTE: authorities must be [package].provider, otherwise CCFileProvider doesn't behave properly -->
 
     <activity
-        android:name="com.classiclient.MainActivity"
+        android:name="com.classicube.MainActivity"
         android:label="ClassiClient"
         android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
         android:exported="true">
