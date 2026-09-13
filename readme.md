@@ -42,10 +42,10 @@ Just click 'OK' to the dialog menu that appears when you start the launcher.
 > **Note:** When running from within VirtualBox, disable Mouse Integration, otherwise the in-game camera won't work properly.
 
 **Singleplayer mode**
-Run ClassiClient.exe, then click Singleplayer at the main menu.
+Run the ClassiClient executable, then click Singleplayer at the main menu.
 
 **Multiplayer mode**
-Run ClassiClient.exe. You can connect to LAN/locally hosted servers, and classicube.net servers if you have a [ClassiCube account](https://www.classicube.net/).
+Run the ClassiClient executable. You can connect to LAN/locally hosted servers, and classicube.net servers if you have a [ClassiCube account](https://www.classicube.net/).
 
 #### *Stuck on OpenGL 1.1?*
 The most common reason for being stuck on OpenGL 1.1 is non-working GPU drivers - so if possible, you should try either installing or updating the drivers for your GPU.
@@ -100,7 +100,7 @@ And also runs on:
 
 # Compiling 
 
-*Note: The instructions below automatically compile ClassiCube with the recommended defaults for the platform. <br>
+*Note: The instructions below automatically compile ClassiClient with the recommended defaults for the platform. <br>
 If you (not recommended) want to override the defaults (e.g. to compile OpenGL build on Windows), see [here](doc/overriding-defaults.md) for details.*
 
 ## Compiling - Windows
@@ -190,7 +190,7 @@ Although the regular linux compiliation flags will work fine, to take full advan
 
 ## Compiling - for Android
 
-NOTE: If you are distributing a modified version, **please change the package ID from `com.classicube.android.client` to something else** - otherwise Android users won't be able to have both ClassiCube and your modified version installed at the same time on their Android device
+NOTE: If you are distributing a modified version, **please change the package ID from `com.classiclient.android.client` to something else** - otherwise Android users won't be able to have both ClassiCube and your modified version installed at the same time on their Android device
 
 ##### Using Android Studio GUI
 
@@ -204,7 +204,7 @@ Run `gradlew` in `misc/android` folder (TODO explain more detailed)
 
 iOS version will have issues as it's incomplete and only tested in iOS Simulator
 
-NOTE: If you are distributing a modified version, **please change the bundle ID from `com.classicube.ios.client` to something else** - otherwise iOS users won't be able to have both ClassiCube and your modified version installed at the same time on their iOS device
+NOTE: If you are distributing a modified version, **please change the bundle ID from `com.classiclient.ios.client` to something else** - otherwise iOS users won't be able to have both ClassiClient and your modified version installed at the same time on their iOS device
 
 ##### Using Xcode GUI
 
