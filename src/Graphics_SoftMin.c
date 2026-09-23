@@ -149,13 +149,13 @@ static void SetAlphaBlend(cc_bool enabled) {
 void Gfx_SetAlphaArgBlend(cc_bool enabled) { }
 
 static void ClearColorBuffer(void) {
-	int i, x, y, size = fb_width * fb_height;
-
 #ifdef CC_BUILD_GBA
 	/* in mGBA, fast clear takes ~3ms compared to ~52ms of standard code below */
 	extern void VRAM_FastClear(BitmapCol color);
 	VRAM_FastClear(clearColor);
 #else
+	int i, x, y, size = fb_width * fb_height;
+
 	if (cb_stride == fb_width) {
 		for (i = 0; i < size; i++) colorBuffer[i] = clearColor;
 	} else {
@@ -232,7 +232,6 @@ void Gfx_UnlockVb(GfxResourceID vb) { }
 /*########################################################################################################################*
 *---------------------------------------------------------Matrices--------------------------------------------------------*
 *#########################################################################################################################*/
-static float texOffsetX, texOffsetY;
 static struct Matrix _view, _proj, _mvp;
 
 void Gfx_LoadMatrix(MatrixType type, const struct Matrix* matrix) {
@@ -251,13 +250,10 @@ void Gfx_LoadMVP(const struct Matrix* view, const struct Matrix* proj, struct Ma
 }
 
 void Gfx_EnableTextureOffset(float x, float y) {
-	texOffsetX = x;
-	texOffsetY = y;
+	// TODO: implement? but clouds aren't drawn anyways
 }
 
 void Gfx_DisableTextureOffset(void) {
-	texOffsetX = 0;
-	texOffsetY = 0;
 }
 
 void Gfx_CalcOrthoMatrix(struct Matrix* matrix, float width, float height, float zNear, float zFar) {
@@ -341,8 +337,8 @@ static int TransformVertex3D(int index, Vertex* vertex) {
 		vertex->c = v->Col;
 	} else {
 		struct VertexTextured* v = (struct VertexTextured*)ptr;
-		vertex->u = (v->U + texOffsetX);
-		vertex->v = (v->V + texOffsetY);
+		vertex->u = v->U;
+		vertex->v = v->V;
 		vertex->c = v->Col;
 	}
 	return vertex->z >= 0.0f;
@@ -357,7 +353,7 @@ static void ViewportVertex3D(Vertex* vertex) {
 	vertex->w = invW;
 }
 
-static void DrawSprite2D(Vertex* V0, Vertex* V1, Vertex* V2) {
+CC_API void DrawSprite2D(Vertex* V0, Vertex* V1, Vertex* V2) {
 	PackedCol vColor = V0->c;
 	int minX = (int)V0->x;
 	int minY = (int)V0->y;
@@ -386,32 +382,42 @@ static void DrawSprite2D(Vertex* V0, Vertex* V1, Vertex* V2) {
 	minY = max(minY, 0); maxY = min(maxY, fb_maxY);
 
 	int x, y;
-	for (y = minY; y <= maxY; y++) 
-	{
-		int texY = fast ? (begTY + (y - minY)) : (((begTY + delTY * (y - minY) / height)) & texHeightMask);
-		for (x = minX; x <= maxX; x++) 
+	if (fast) {
+		for (y = minY; y <= maxY; y++) 
 		{
-			int texX = fast ? (begTX + (x - minX)) : (((begTX + delTX * (x - minX) / width)) & texWidthMask);
-			int texIndex = texY * curTexWidth + texX;
-
-			BitmapCol color = curTexPixels[texIndex];
-			int R, G, B;
-
-			if ((color & BITMAPCOLOR_A_MASK) == 0) continue;
-			int cb_index = y * cb_stride + x;
-
-			if (vColor != PACKEDCOL_WHITE) {
-				int r1 = PackedCol_R(vColor), r2 = BitmapCol_R(color);
-				R = ( r1 * r2 ) >> 8;
-				int g1 = PackedCol_G(vColor), g2 = BitmapCol_G(color);
-				G = ( g1 * g2 ) >> 8;
-				int b1 = PackedCol_B(vColor), b2 = BitmapCol_B(color);
-				B = ( b1 * b2 ) >> 8;
-
-				color = BitmapCol_Make(R, G, B, 0xFF);
+			int texY = begTY + (y - minY);
+			for (x = minX; x <= maxX; x++) 
+			{
+				int texX = begTX + (x - minX);
+				int texIndex = texY * curTexWidth + texX;
+				BitmapCol color = curTexPixels[texIndex];
+				#include "Graphics_SoftMin.sprite.i"
 			}
+		}
+	} else if (delTX == 0 && delTY == 0) {
+		int texY = begTY & texHeightMask;
+		int texX = begTX & texWidthMask;
+		int texIndex = texY * curTexWidth + texX;
+		BitmapCol color = curTexPixels[texIndex];
 
-			colorBuffer[cb_index] = color;
+		for (y = minY; y <= maxY; y++) 
+		{
+			for (x = minX; x <= maxX; x++) 
+			{
+				#include "Graphics_SoftMin.sprite.i"
+			}
+		}
+	} else {
+		for (y = minY; y <= maxY; y++) 
+		{
+			int texY = ((begTY + delTY * (y - minY) / height)) & texHeightMask;
+			for (x = minX; x <= maxX; x++) 
+			{
+				int texX = ((begTX + delTX * (x - minX) / width)) & texWidthMask;
+				int texIndex = texY * curTexWidth + texX;
+				BitmapCol color = curTexPixels[texIndex];
+				#include "Graphics_SoftMin.sprite.i"
+			}
 		}
 	}
 }
@@ -528,8 +534,8 @@ static void ClipLine(Vertex* v1, Vertex* v2, Vertex* V) {
 	V->z = 0.0f; // clipped against near plane anyways (I.e Z/W = 0 --> Z = 0)
 	V->w = invt * v1->w + t * v2->w;
 	
-	V->u = invt * v1->u + t * v2->u;
-	V->v = invt * v1->v + t * v2->v;
+	V->u = t < 0.5f ? v1->u : v2->u;
+	V->v = t < 0.5f ? v1->v : v2->v;
 	V->c = v1->c;
 }
 
