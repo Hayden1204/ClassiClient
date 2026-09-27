@@ -9,12 +9,12 @@ Copyright 2014-2025 ClassiCube | Licensed under BSD-3
 #define GAME_APP_VER "1.0.1"
 
 #if defined CC_BUILD_WEB
-#define GAME_APP_ALT   "ClassiClient 1.0.1 web mobile"
-#define GAME_APP_NAME  "ClassiClient 1.0.1 web"
+#define GAME_APP_ALT   "ClassiClient 1.0.2 web mobile"
+#define GAME_APP_NAME  "ClassiClient 1.0.2 web"
 #define GAME_APP_TITLE "ClassiClient"
 #else
-#define GAME_APP_NAME  "ClassiClient 1.0.1"
-#define GAME_APP_TITLE "ClassiClient 1.0.1"
+#define GAME_APP_NAME  "ClassiClient 1.0.2"
+#define GAME_APP_TITLE "ClassiClient 1.0.2"
 #endif
 
 /* Max number of characters strings can have. */
