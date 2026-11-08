@@ -1077,7 +1077,7 @@ static void HacksSettingsScreen_InitWidgets(struct MenuOptionsScreen* s) {
 			"&eIf &fON&e, gives you a triple jump which increases speed massively,\n" \
 			"&ealong with older noclip style. This is based on the \"World of Minecraft\"\n" \
 			"&eclassic client mod, which popularized hacks conventions and controls\n" \
-			"&ebefore ClassiCube was created.");
+			"&ebefore ClassiClient was created.");
 		
 		MenuOptionsScreen_AddBool(s, "Full block stepping",
 			HS_GetFullStep, HS_SetFullStep, NULL);
