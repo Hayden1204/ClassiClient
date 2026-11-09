@@ -32,7 +32,7 @@ ClassiClient aims to replicate the 2009 Minecraft Classic client while offering 
 
 ClassiClient strives to replicate the original Minecraft Classic experience by **strictly adhering to [clean room](https://en.wikipedia.org/wiki/Clean_room_design) reverse engineering approach**.
 
-If you're interested in documenting or verifying the behaviour of the original Minecraft Classic, please get in contact on the [ClassiCube Discord](https://classicube.net/discord)
+If you're interested in documenting or verifying the behaviour of the original Minecraft Classic, please get in contact on the [ClassiClient Discord](https://discord.gg/YkrH6SSZhX)
 
 
 # How to play
